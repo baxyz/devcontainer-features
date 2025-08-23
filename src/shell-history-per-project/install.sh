@@ -9,9 +9,10 @@ set -e
 # Get options
 HISTORY_DIRECTORY=${HISTORYDIRECTORY:-"/workspaces/.shell-history"}
 MAX_HISTORY_SIZE=${MAXHISTORYSIZE:-"10000"}
+SHELL_OPTION=${SHELL:-"auto"}
 
-# Auto-detect user (common-utils sets _REMOTE_USER and _REMOTE_USER_HOME)
-_REMOTE_USER="${_REMOTE_USER:-"${USERNAME:-"${USER:-"root"}"}"}"
+# Auto-detect user (without common-utils dependency)
+_REMOTE_USER="${_REMOTE_USER:-"${USERNAME:-"${USER:-"$(whoami 2>/dev/null || echo root)"}"}"}"
 _REMOTE_USER_HOME="${_REMOTE_USER_HOME:-""}"
 
 if [ -z "$_REMOTE_USER_HOME" ]; then
@@ -22,31 +23,44 @@ if [ -z "$_REMOTE_USER_HOME" ]; then
     fi
 fi
 
-# Auto-detect shell if not specified
-if [ -n "${SHELL}" ]; then
-    # Extract shell name from full path (e.g., /bin/zsh -> zsh)
-    DETECTED_SHELL=$(basename "${SHELL}")
+# Auto-detect available shells
+AVAILABLE_SHELLS=""
+if command -v zsh >/dev/null 2>&1; then
+    AVAILABLE_SHELLS="$AVAILABLE_SHELLS zsh"
+fi
+if command -v bash >/dev/null 2>&1; then
+    AVAILABLE_SHELLS="$AVAILABLE_SHELLS bash"
+fi
+if command -v fish >/dev/null 2>&1; then
+    AVAILABLE_SHELLS="$AVAILABLE_SHELLS fish"
+fi
+
+# Determine which shells to configure
+if [ "$SHELL_OPTION" = "auto" ]; then
+    SHELLS_TO_CONFIGURE="$AVAILABLE_SHELLS"
+    echo "Auto-detecting shells: configuring all available shells"
 else
-    # Fallback: check what shells are available
-    if command -v zsh >/dev/null 2>&1; then
-        DETECTED_SHELL="zsh"
-    elif command -v bash >/dev/null 2>&1; then
-        DETECTED_SHELL="bash"
-    elif command -v fish >/dev/null 2>&1; then
-        DETECTED_SHELL="fish"
+    # Check if specified shell is available
+    if echo "$AVAILABLE_SHELLS" | grep -q "$SHELL_OPTION"; then
+        SHELLS_TO_CONFIGURE="$SHELL_OPTION"
+        echo "Using specified shell: $SHELL_OPTION"
     else
-        DETECTED_SHELL="bash"  # Default fallback
+        echo "Warning: Specified shell '$SHELL_OPTION' not found. Available shells: $AVAILABLE_SHELLS"
+        if [ -n "$AVAILABLE_SHELLS" ]; then
+            SHELLS_TO_CONFIGURE="$AVAILABLE_SHELLS"
+            echo "Falling back to auto-detection"
+        else
+            echo "No supported shells found. Exiting."
+            exit 1
+        fi
     fi
 fi
 
-# Use provided shell option or detected shell
-SHELL_TYPE=${SHELL:-"${DETECTED_SHELL}"}
-
 echo "Installing shell-history-per-project feature..."
-echo "Detected user: $_REMOTE_USER"
+echo "User: $_REMOTE_USER"
 echo "User home: $_REMOTE_USER_HOME"
-echo "Detected shell: $DETECTED_SHELL"
-echo "Using shell: $SHELL_TYPE"
+echo "Available shells:$AVAILABLE_SHELLS"
+echo "Shells to configure:$SHELLS_TO_CONFIGURE"
 echo "History directory: $HISTORY_DIRECTORY"
 echo "Max history size: $MAX_HISTORY_SIZE"
 
@@ -129,8 +143,11 @@ setup_shell_history() {
     ln -sf "$history_file" "$default_history"
 }
 
-# Setup history for the specified shell
-setup_shell_history "$SHELL_TYPE"
+# Setup history for the specified shells
+for shell in $SHELLS_TO_CONFIGURE; do
+    echo "Configuring shell: $shell"
+    setup_shell_history "$shell"
+done
 
 # Set proper permissions
 if [ "$_REMOTE_USER" != "root" ]; then
@@ -139,4 +156,5 @@ fi
 chmod -R 755 "$HISTORY_DIRECTORY"
 
 echo "Shell history per project feature installed successfully!"
+echo "Configured shells:$SHELLS_TO_CONFIGURE"
 echo "History will be persisted in: $HISTORY_DIRECTORY"
