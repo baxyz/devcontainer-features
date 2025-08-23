@@ -76,7 +76,7 @@ Features are automatically published to GitHub Container Registry via GitHub Act
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+This project is licensed under the GNU Affero General Public License v3.0. See [LICENSE](LICENSE) for details.
 
 ## Acknowledgments
 

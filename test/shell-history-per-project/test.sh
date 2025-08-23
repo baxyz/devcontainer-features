@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Test script for shell-history-per-project feature
+# Copyright (c) 2025 baxyz
+# Licensed under AGPL-3.0 - see LICENSE file for details
 
 set -e
 

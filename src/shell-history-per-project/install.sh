@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Shell History Per Project DevContainer Feature
+# Copyright (c) 2025 baxyz
+# Licensed under AGPL-3.0 - see LICENSE file for details
+
 set -e
 
 # Import devcontainer library
