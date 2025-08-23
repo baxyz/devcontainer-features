@@ -6,13 +6,18 @@
 
 set -e
 
-# Import devcontainer library
-source dev-container-features-common
-
 # Get options
 SHELL_TYPE=${SHELL:-"zsh"}
 HISTORY_DIRECTORY=${HISTORYDIRECTORY:-"/workspaces/.shell-history"}
 MAX_HISTORY_SIZE=${MAXHISTORYSIZE:-"10000"}
+
+# Get the username (try different methods)
+_REMOTE_USER="${_REMOTE_USER:-"${_CONTAINER_USER:-"root"}"}"
+if [ "$_REMOTE_USER" = "root" ]; then
+    _REMOTE_USER_HOME="/root"
+else
+    _REMOTE_USER_HOME="/home/$_REMOTE_USER"
+fi
 
 echo "Installing shell-history-per-project feature..."
 echo "Shell type: $SHELL_TYPE"
@@ -32,17 +37,17 @@ setup_shell_history() {
     case "$shell_name" in
         "zsh")
             history_file="$HISTORY_DIRECTORY/.zsh_history"
-            config_file="$HOME/.zshrc"
+            config_file="$_REMOTE_USER_HOME/.zshrc"
             history_var="HISTFILE"
             ;;
         "bash")
             history_file="$HISTORY_DIRECTORY/.bash_history"
-            config_file="$HOME/.bashrc"
+            config_file="$_REMOTE_USER_HOME/.bashrc"
             history_var="HISTFILE"
             ;;
         "fish")
             history_file="$HISTORY_DIRECTORY/fish_history"
-            config_file="$HOME/.config/fish/config.fish"
+            config_file="$_REMOTE_USER_HOME/.config/fish/config.fish"
             mkdir -p "$(dirname "$config_file")"
             ;;
     esac
@@ -80,13 +85,13 @@ setup_shell_history() {
     local default_history=""
     case "$shell_name" in
         "zsh")
-            default_history="$HOME/.zsh_history"
+            default_history="$_REMOTE_USER_HOME/.zsh_history"
             ;;
         "bash")
-            default_history="$HOME/.bash_history"
+            default_history="$_REMOTE_USER_HOME/.bash_history"
             ;;
         "fish")
-            default_history="$HOME/.local/share/fish/fish_history"
+            default_history="$_REMOTE_USER_HOME/.local/share/fish/fish_history"
             mkdir -p "$(dirname "$default_history")"
             ;;
     esac
@@ -102,7 +107,9 @@ setup_shell_history() {
 setup_shell_history "$SHELL_TYPE"
 
 # Set proper permissions
-chown -R $_REMOTE_USER:$_REMOTE_USER "$HISTORY_DIRECTORY" || true
+if [ "$_REMOTE_USER" != "root" ]; then
+    chown -R "$_REMOTE_USER:$_REMOTE_USER" "$HISTORY_DIRECTORY" || true
+fi
 chmod -R 755 "$HISTORY_DIRECTORY"
 
 echo "Shell history per project feature installed successfully!"
