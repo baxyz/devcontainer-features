@@ -1,0 +1,32 @@
+{
+    "version": "1.0.0",
+    "id": "shell-history-per-project",
+    "name": "Shell History Per Project",
+    "description": "Persist shell history per project by mounting shell directory and creating symbolic links internally. Supports zsh, bash and other shells.",
+    "documentationURL": "https://github.com/baxyz/devcontainer-features/tree/main/src/shell-history-per-project",
+    "options": {
+        "shell": {
+            "type": "string",
+            "enum": [
+                "zsh",
+                "bash",
+                "fish"
+            ],
+            "default": "zsh",
+            "description": "Shell type to configure history persistence for"
+        },
+        "historyDirectory": {
+            "type": "string",
+            "default": "/workspaces/.shell-history",
+            "description": "Directory where shell history will be persisted"
+        },
+        "maxHistorySize": {
+            "type": "string",
+            "default": "10000",
+            "description": "Maximum number of history entries to keep"
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}
