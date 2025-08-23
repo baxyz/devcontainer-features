@@ -7,20 +7,46 @@
 set -e
 
 # Get options
-SHELL_TYPE=${SHELL:-"zsh"}
 HISTORY_DIRECTORY=${HISTORYDIRECTORY:-"/workspaces/.shell-history"}
 MAX_HISTORY_SIZE=${MAXHISTORYSIZE:-"10000"}
 
-# Get the username (try different methods)
-_REMOTE_USER="${_REMOTE_USER:-"${_CONTAINER_USER:-"root"}"}"
-if [ "$_REMOTE_USER" = "root" ]; then
-    _REMOTE_USER_HOME="/root"
-else
-    _REMOTE_USER_HOME="/home/$_REMOTE_USER"
+# Auto-detect user (common-utils sets _REMOTE_USER and _REMOTE_USER_HOME)
+_REMOTE_USER="${_REMOTE_USER:-"${USERNAME:-"${USER:-"root"}"}"}"
+_REMOTE_USER_HOME="${_REMOTE_USER_HOME:-""}"
+
+if [ -z "$_REMOTE_USER_HOME" ]; then
+    if [ "$_REMOTE_USER" = "root" ]; then
+        _REMOTE_USER_HOME="/root"
+    else
+        _REMOTE_USER_HOME="/home/$_REMOTE_USER"
+    fi
 fi
 
+# Auto-detect shell if not specified
+if [ -n "${SHELL}" ]; then
+    # Extract shell name from full path (e.g., /bin/zsh -> zsh)
+    DETECTED_SHELL=$(basename "${SHELL}")
+else
+    # Fallback: check what shells are available
+    if command -v zsh >/dev/null 2>&1; then
+        DETECTED_SHELL="zsh"
+    elif command -v bash >/dev/null 2>&1; then
+        DETECTED_SHELL="bash"
+    elif command -v fish >/dev/null 2>&1; then
+        DETECTED_SHELL="fish"
+    else
+        DETECTED_SHELL="bash"  # Default fallback
+    fi
+fi
+
+# Use provided shell option or detected shell
+SHELL_TYPE=${SHELL:-"${DETECTED_SHELL}"}
+
 echo "Installing shell-history-per-project feature..."
-echo "Shell type: $SHELL_TYPE"
+echo "Detected user: $_REMOTE_USER"
+echo "User home: $_REMOTE_USER_HOME"
+echo "Detected shell: $DETECTED_SHELL"
+echo "Using shell: $SHELL_TYPE"
 echo "History directory: $HISTORY_DIRECTORY"
 echo "Max history size: $MAX_HISTORY_SIZE"
 
