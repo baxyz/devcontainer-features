@@ -1,5 +1,5 @@
 {
-  "version": "1.0.2",
+  "version": "0.0.2",
   "id": "shell-history-per-project",
   "name": "Shell History Per Project",
   "description": "Persist shell history per project by mounting shell directory and creating symbolic links internally. Supports zsh, bash and other shells.",
