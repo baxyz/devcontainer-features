@@ -6,7 +6,7 @@ This repository contains a collection of DevContainer Features developed and mai
 
 ### shell-history-per-project
 
-Persist shell history per project by mounting shell directory and creating symbolic links internally. Supports zsh, bash and fish shells.
+Persist shell history per project by automatically detecting and configuring all available shells (zsh, bash, fish). Supports auto-detection or manual shell selection.
 
 **Key benefits:**
 - Per-project history isolation
@@ -17,6 +17,19 @@ Persist shell history per project by mounting shell directory and creating symbo
 
 [📖 Documentation](./src/shell-history-per-project/README.md)
 
+### kubectl-telepresence
+
+Installs kubectl and Telepresence without unnecessary dependencies like Helm or Minikube. Optimized for development workflows with Kubernetes clusters.
+
+**Key benefits:**
+- Lightweight installation (no bloat)
+- Multi-architecture support (amd64, arm64, arm)
+- Shell completions and useful aliases
+- Built-in validation script
+- VS Code Kubernetes extensions included
+
+[📖 Documentation](./src/kubectl-telepresence/README.md)
+
 ## Usage
 
 Features from this repository are available via GitHub Container Registry. Reference them in your `devcontainer.json`:
@@ -24,7 +37,8 @@ Features from this repository are available via GitHub Container Registry. Refer
 ```json
 {
     "features": {
-        "ghcr.io/baxyz/devcontainer-features/shell-history-per-project:1": {}
+        "ghcr.io/baxyz/devcontainer-features/shell-history-per-project:0": {},
+        "ghcr.io/baxyz/devcontainer-features/kubectl-telepresence:0": {}
     }
 }
 ```
@@ -33,7 +47,8 @@ Features from this repository are available via GitHub Container Registry. Refer
 
 | Feature | Description | Documentation |
 |---------|-------------|---------------|
-| [shell-history-per-project](./src/shell-history-per-project) | Per-project shell history persistence | [README](./src/shell-history-per-project/README.md) |
+| [shell-history-per-project](./src/shell-history-per-project) | Per-project shell history persistence with multi-shell auto-detection | [README](./src/shell-history-per-project/README.md) |
+| [kubectl-telepresence](./src/kubectl-telepresence) | Lightweight kubectl & Telepresence installation for Kubernetes development | [README](./src/kubectl-telepresence/README.md) |
 
 ## Development
 
