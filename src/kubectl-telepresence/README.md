@@ -130,22 +130,6 @@ After installation:
 - For cluster access issues, check VPN connectivity
 - Telepresence requires proper network permissions
 
-## Comparison with official feature
-
-This feature is based on the official `ghcr.io/devcontainers/features/kubectl-helm-minikube` but simplified:
-
-**Removed:**
-- Helm installation
-- Minikube installation  
-- kubectl SHA256 checksum verification (automatic from official source)
-- Complex version detection logic
-
-**Added:**
-- Telepresence installation
-- Telepresence aliases and validation
-- Focused documentation
-- Streamlined codebase
-
 ## Architecture support
 
 - ✅ Linux x86_64 (amd64)
