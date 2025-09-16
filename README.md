@@ -17,6 +17,19 @@ Persist shell history per project by automatically detecting and configuring all
 
 [📖 Documentation](./src/shell-history-per-project/README.md)
 
+### git-absorb
+
+Installs git-absorb, a tool that automatically absorbs staged changes into their logical commits. Like 'git commit --fixup' but automatic.
+
+**Key benefits:**
+- Automatic fixup commits for staged changes
+- Multi-architecture support (x86_64, aarch64)
+- Git subcommand integration
+- Lightweight single binary installation
+- Perfect for cleaning up commit history
+
+[📖 Documentation](./src/git-absorb/README.md)
+
 ## Usage
 
 Features from this repository are available via GitHub Container Registry. Reference them in your `devcontainer.json`:

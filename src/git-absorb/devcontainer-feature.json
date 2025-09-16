@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "id": "git-absorb",
+  "name": "git-absorb",
+  "description": "Installs git-absorb, a tool to automatically absorb staged changes into their logical commits. Like 'git commit --fixup' but automatic.",
+  "documentationURL": "https://github.com/baxyz/devcontainer-features/tree/main/src/git-absorb",
+  "options": {
+    "version": {
+      "type": "string",
+      "default": "latest",
+      "description": "Version of git-absorb to install (latest, or specific version like 0.6.11)"
+    }
+  },
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils"
+  ]
+}
