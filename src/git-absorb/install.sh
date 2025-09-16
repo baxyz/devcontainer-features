@@ -94,17 +94,16 @@ if [ "${GIT_ABSORB_VERSION}" = "latest" ]; then
     fi
 fi
 
-# Remove 'v' prefix if present
+# Extract version number for file names (remove 'v' prefix if present)
 if [ "${GIT_ABSORB_VERSION::1}" = 'v' ]; then
     VERSION_NUMBER="${GIT_ABSORB_VERSION:1}"
 else
     VERSION_NUMBER="${GIT_ABSORB_VERSION}"
-    GIT_ABSORB_VERSION="v${GIT_ABSORB_VERSION}"
 fi
 
 echo "  📦 Downloading git-absorb ${GIT_ABSORB_VERSION}..."
 
-# Download from GitHub releases
+# Download from GitHub releases (use original tag name for URL path)
 DOWNLOAD_URL="https://github.com/tummychow/git-absorb/releases/download/${GIT_ABSORB_VERSION}/git-absorb-${VERSION_NUMBER}-${architecture}.tar.gz"
 
 if ! curl -fL "${DOWNLOAD_URL}" -o /tmp/git-absorb.tar.gz; then
