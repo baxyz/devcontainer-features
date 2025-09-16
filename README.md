@@ -17,19 +17,6 @@ Persist shell history per project by automatically detecting and configuring all
 
 [📖 Documentation](./src/shell-history-per-project/README.md)
 
-### kubectl-telepresence
-
-Installs kubectl and Telepresence without unnecessary dependencies like Helm or Minikube. Optimized for development workflows with Kubernetes clusters.
-
-**Key benefits:**
-- Lightweight installation (no bloat)
-- Multi-architecture support (amd64, arm64, arm)
-- Shell completions and useful aliases
-- Built-in validation script
-- VS Code Kubernetes extensions included
-
-[📖 Documentation](./src/kubectl-telepresence/README.md)
-
 ## Usage
 
 Features from this repository are available via GitHub Container Registry. Reference them in your `devcontainer.json`:
@@ -38,7 +25,7 @@ Features from this repository are available via GitHub Container Registry. Refer
 {
     "features": {
         "ghcr.io/baxyz/devcontainer-features/shell-history-per-project:0": {},
-        "ghcr.io/baxyz/devcontainer-features/kubectl-telepresence:0": {}
+        "ghcr.io/baxyz/devcontainer-features/git-absorb:0": {}
     }
 }
 ```
@@ -48,7 +35,7 @@ Features from this repository are available via GitHub Container Registry. Refer
 | Feature | Description | Documentation |
 |---------|-------------|---------------|
 | [shell-history-per-project](./src/shell-history-per-project) | Per-project shell history persistence with multi-shell auto-detection | [README](./src/shell-history-per-project/README.md) |
-| [kubectl-telepresence](./src/kubectl-telepresence) | Lightweight kubectl & Telepresence installation for Kubernetes development | [README](./src/kubectl-telepresence/README.md) |
+| [git-absorb](./src/git-absorb) | Automatic absorption of staged changes into logical commits | [README](./src/git-absorb/README.md) |
 
 ## Development
 
