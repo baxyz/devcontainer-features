@@ -16,6 +16,7 @@ jobs:
         features:
           - shell-history-per-project
           - git-absorb
+          - biome
         baseImage:
           - debian:latest
           - ubuntu:latest

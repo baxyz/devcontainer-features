@@ -30,6 +30,19 @@ Installs git-absorb, a tool that automatically absorbs staged changes into their
 
 [📖 Documentation](./src/git-absorb/README.md)
 
+### biome
+
+Installs Biome, a fast formatter, linter, and more for web projects. One toolchain for your web project.
+
+**Key benefits:**
+- Fast formatter and linter for JavaScript, TypeScript, JSX, JSON, CSS, and more
+- Replace Prettier and ESLint with a single tool
+- Multi-architecture support (x86_64, aarch64)
+- Configurable version installation
+- Lightweight single binary
+
+[📖 Documentation](./src/biome/README.md)
+
 ## Usage
 
 Features from this repository are available via GitHub Container Registry. Reference them in your `devcontainer.json`:
@@ -38,7 +51,8 @@ Features from this repository are available via GitHub Container Registry. Refer
 {
     "features": {
         "ghcr.io/baxyz/devcontainer-features/shell-history-per-project:0": {},
-        "ghcr.io/baxyz/devcontainer-features/git-absorb:0": {}
+        "ghcr.io/baxyz/devcontainer-features/git-absorb:0": {},
+        "ghcr.io/baxyz/devcontainer-features/biome:0": {}
     }
 }
 ```
@@ -49,6 +63,7 @@ Features from this repository are available via GitHub Container Registry. Refer
 |---------|-------------|---------------|
 | [shell-history-per-project](./src/shell-history-per-project) | Per-project shell history persistence with multi-shell auto-detection | [README](./src/shell-history-per-project/README.md) |
 | [git-absorb](./src/git-absorb) | Automatic absorption of staged changes into logical commits | [README](./src/git-absorb/README.md) |
+| [biome](./src/biome) | Fast formatter, linter, and more for web projects | [README](./src/biome/README.md) |
 
 ## Development
 
