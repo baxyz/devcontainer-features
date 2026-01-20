@@ -17,7 +17,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
     "features": {
-        "ghcr.io/baxyz/devcontainer-features/git-absorb:0": {}
+        "ghcr.io/helpers4/devcontainer-features/git-absorb:0": {}
     }
 }
 ```
@@ -35,7 +35,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
     "features": {
-        "ghcr.io/baxyz/devcontainer-features/git-absorb:0": {}
+        "ghcr.io/helpers4/devcontainer-features/git-absorb:0": {}
     }
 }
 ```
@@ -45,7 +45,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
     "features": {
-        "ghcr.io/baxyz/devcontainer-features/git-absorb:0": {
+        "ghcr.io/helpers4/devcontainer-features/git-absorb:0": {
             "version": "0.6.11"
         }
     }
@@ -145,4 +145,4 @@ For more information, visit the [official git-absorb repository](https://github.
 
 ## Contributing
 
-This feature is part of the `baxyz/devcontainer-features` repository. Contributions and issues are welcome!
+This feature is part of the `helpers4/devcontainer-features` repository. Contributions and issues are welcome!

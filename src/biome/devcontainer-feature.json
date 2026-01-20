@@ -3,7 +3,7 @@
   "id": "biome",
   "name": "Biome",
   "description": "Installs Biome, a fast formatter, linter, and more for web projects. One toolchain for your web project.",
-  "documentationURL": "https://github.com/baxyz/devcontainer-features/tree/main/src/biome",
+  "documentationURL": "https://github.com/helpers4/devcontainer-features/tree/main/src/biome",
   "options": {
     "version": {
       "type": "string",

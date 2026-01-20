@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Biome DevContainer Feature
-# Copyright (c) 2025 baxyz
+# Copyright (c) 2025 helpers4
 # Licensed under AGPL-3.0 - see LICENSE file for details
 #
 # Installs Biome: Fast formatter, linter, and more for web projects
