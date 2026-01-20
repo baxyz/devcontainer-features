@@ -17,7 +17,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
     "features": {
-        "ghcr.io/baxyz/devcontainer-features/shell-history-per-project:1": {}
+        "ghcr.io/helpers4/devcontainer-features/shell-history-per-project:1": {}
     }
 }
 ```
@@ -37,7 +37,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
     "features": {
-        "ghcr.io/baxyz/devcontainer-features/shell-history-per-project:1": {}
+        "ghcr.io/helpers4/devcontainer-features/shell-history-per-project:1": {}
     }
 }
 ```
@@ -47,7 +47,7 @@ Add this feature to your `devcontainer.json`:
 ```json
 {
     "features": {
-        "ghcr.io/baxyz/devcontainer-features/shell-history-per-project:1": {
+        "ghcr.io/helpers4/devcontainer-features/shell-history-per-project:1": {
             "shell": "bash",
             "historyDirectory": "/workspaces/.custom-history",
             "maxHistorySize": "50000"
@@ -63,7 +63,7 @@ For persistent history across different development sessions, you might want to 
 ```json
 {
     "features": {
-        "ghcr.io/baxyz/devcontainer-features/shell-history-per-project:1": {
+        "ghcr.io/helpers4/devcontainer-features/shell-history-per-project:1": {
             "historyDirectory": "/workspaces/.shell-history"
         }
     },
@@ -132,4 +132,4 @@ This feature is automatically installed when referenced in a `devcontainer.json`
 
 ## Contributing
 
-This feature is part of the `baxyz/devcontainer-features` repository. Contributions and issues are welcome!
+This feature is part of the `helpers4/devcontainer-features` repository. Contributions and issues are welcome!

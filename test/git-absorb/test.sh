@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Test script for git-absorb feature
-# Copyright (c) 2025 baxyz
+# Copyright (c) 2025 helpers4
 # Licensed under AGPL-3.0 - see LICENSE file for details
 
 set -e

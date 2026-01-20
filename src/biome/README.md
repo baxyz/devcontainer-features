@@ -15,7 +15,7 @@ Installs [Biome](https://biomejs.dev/), a fast formatter, linter, and more for w
 ```jsonc
 {
     "features": {
-        "ghcr.io/baxyz/devcontainer-features/biome:0": {}
+        "ghcr.io/helpers4/devcontainer-features/biome:0": {}
     }
 }
 ```
@@ -25,7 +25,7 @@ Installs [Biome](https://biomejs.dev/), a fast formatter, linter, and more for w
 ```jsonc
 {
     "features": {
-        "ghcr.io/baxyz/devcontainer-features/biome:0": {
+        "ghcr.io/helpers4/devcontainer-features/biome:0": {
             "version": "2.3.0"
         }
     }

@@ -1,6 +1,6 @@
-# DevContainer Features by baxyz
+# DevContainer Features by helpers4
 
-This repository contains a collection of DevContainer Features developed and maintained by baxyz.
+This repository contains a collection of DevContainer Features developed and maintained by helpers4.
 
 ## Features
 
@@ -50,9 +50,9 @@ Features from this repository are available via GitHub Container Registry. Refer
 ```json
 {
     "features": {
-        "ghcr.io/baxyz/devcontainer-features/shell-history-per-project:0": {},
-        "ghcr.io/baxyz/devcontainer-features/git-absorb:0": {},
-        "ghcr.io/baxyz/devcontainer-features/biome:0": {}
+        "ghcr.io/helpers4/devcontainer-features/shell-history-per-project:0": {},
+        "ghcr.io/helpers4/devcontainer-features/git-absorb:0": {},
+        "ghcr.io/helpers4/devcontainer-features/biome:0": {}
     }
 }
 ```
