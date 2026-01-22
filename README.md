@@ -1,51 +1,42 @@
 # DevContainer Features by baxyz
 
-This repository contains a collection of DevContainer Features developed and maintained by baxyz.
+⚠️ **Breaking Changes**: This repository is in maintenance mode. Active development has moved to [helpers4/devcontainer](https://github.com/helpers4/devcontainer).
 
-## Features
+## Migration Status
 
-### shell-history-per-project
+### ✅ Migrated to helpers4
 
-Persist shell history per project by automatically detecting and configuring all available shells (zsh, bash, fish). Supports auto-detection or manual shell selection.
+The following features have been migrated to the [helpers4/devcontainer](https://github.com/helpers4/devcontainer) repository and are now maintained there as v1:
 
-**Key benefits:**
-- Per-project history isolation
-- Persistent across container rebuilds
-- Multiple shell support (zsh, bash, fish)
-- Team collaboration friendly
-- Clean separation between personal and project commands
+- **shell-history-per-project** → [helpers4/devcontainer](https://github.com/helpers4/devcontainer) (v1)
+- **git-absorb** → [helpers4/devcontainer](https://github.com/helpers4/devcontainer) (v1)
 
-[📖 Documentation](./src/shell-history-per-project/README.md)
+**For new projects**, use the helpers4 versions:
+```json
+{
+    "features": {
+        "ghcr.io/helpers4/devcontainer/shell-history-per-project:1": {},
+        "ghcr.io/helpers4/devcontainer/git-absorb:1": {}
+    }
+}
+```
 
-### git-absorb
+### ⚠️ Deprecated: biome
 
-Installs git-absorb, a tool that automatically absorbs staged changes into their logical commits. Like 'git commit --fixup' but automatic.
+The **biome** feature is **deprecated and no longer maintained**. While the v0 container image remains available on GHCR for backward compatibility (`ghcr.io/baxyz/devcontainer-features/biome:0`), we recommend:
+- Migrating to a dedicated biome installation method (e.g., `npm install -D @biomejs/biome`)
+- Using the official [Biome documentation](https://biomejs.dev/) for integration guidance
+- Or choosing an alternative if you prefer a container-based setup
 
-**Key benefits:**
-- Automatic fixup commits for staged changes
-- Multi-architecture support (x86_64, aarch64)
-- Git subcommand integration
-- Lightweight single binary installation
-- Perfect for cleaning up commit history
-
-[📖 Documentation](./src/git-absorb/README.md)
-
-### biome
-
-Installs Biome, a fast formatter, linter, and more for web projects. One toolchain for your web project.
-
-**Key benefits:**
-- Fast formatter and linter for JavaScript, TypeScript, JSX, JSON, CSS, and more
-- Replace Prettier and ESLint with a single tool
-- Multi-architecture support (x86_64, aarch64)
-- Configurable version installation
-- Lightweight single binary
-
-[📖 Documentation](./src/biome/README.md)
+**Legacy compatibility note**: Existing devcontainer.json configurations using `ghcr.io/baxyz/devcontainer-features/biome:0` will continue to work, but no further updates will be provided.
 
 ## Usage
 
-Features from this repository are available via GitHub Container Registry. Reference them in your `devcontainer.json`:
+For new projects, refer to the [helpers4/devcontainer](https://github.com/helpers4/devcontainer) repository.
+
+### Legacy Support
+
+Features from this repository (v0 versions) remain available via GitHub Container Registry for backward compatibility:
 
 ```json
 {
@@ -57,52 +48,60 @@ Features from this repository are available via GitHub Container Registry. Refer
 }
 ```
 
+⚠️ **Note**: These v0 versions are in maintenance mode only. New features and updates are in [helpers4/devcontainer](https://github.com/helpers4/devcontainer).
+
 ## Available Features
 
-| Feature | Description | Documentation |
-|---------|-------------|---------------|
-| [shell-history-per-project](./src/shell-history-per-project) | Per-project shell history persistence with multi-shell auto-detection | [README](./src/shell-history-per-project/README.md) |
-| [git-absorb](./src/git-absorb) | Automatic absorption of staged changes into logical commits | [README](./src/git-absorb/README.md) |
-| [biome](./src/biome) | Fast formatter, linter, and more for web projects | [README](./src/biome/README.md) |
+| Feature | Status | Location |
+|---------|--------|----------|
+| shell-history-per-project | ✅ Migrated (v1) | [helpers4/devcontainer](https://github.com/helpers4/devcontainer) |
+| git-absorb | ✅ Migrated (v1) | [helpers4/devcontainer](https://github.com/helpers4/devcontainer) |
+| biome | ⚠️ Deprecated | See migration guide above |
 
 ## Development
 
-This repository follows the [DevContainer Features specification](https://containers.dev/implementors/features/) and is compatible with the [DevContainer Features distribution](https://containers.dev/implementors/features-distribution/).
+This repository is in **maintenance mode**. Active development of DevContainer features continues at [helpers4/devcontainer](https://github.com/helpers4/devcontainer).
 
 ### Repository Structure
 
 ```
 .
 ├── src/
-│   └── shell-history-per-project/
+│   └── biome/                          (deprecated, maintained for legacy support)
 │       ├── devcontainer-feature.json
 │       ├── install.sh
 │       └── README.md
 ├── test/
-│   └── shell-history-per-project/
+│   └── biome/                          (deprecated, maintained for legacy support)
 │       └── test.sh
 └── README.md
 ```
 
+For newly maintained features, see [helpers4/devcontainer](https://github.com/helpers4/devcontainer).
+
 ### Testing
 
-Features can be tested locally using the [DevContainer CLI](https://github.com/devcontainers/cli):
+Features in this repository (biome only, deprecated) can be tested locally using the [DevContainer CLI](https://github.com/devcontainers/cli):
 
 ```bash
-devcontainer features test --features shell-history-per-project
+devcontainer features test --features biome
 ```
+
+For newly maintained features, see testing instructions at [helpers4/devcontainer](https://github.com/helpers4/devcontainer).
 
 ### Publishing
 
-Features are automatically published to GitHub Container Registry via GitHub Actions when tagged releases are created.
+Legacy images for biome are available on GitHub Container Registry. No new releases will be published for this repository. Active feature development is published from [helpers4/devcontainer](https://github.com/helpers4/devcontainer).
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Add your feature following the established patterns
-4. Test your feature locally
-5. Submit a pull request
+This repository is in maintenance mode. For new feature development or contributions:
+
+1. Visit [helpers4/devcontainer](https://github.com/helpers4/devcontainer)
+2. Follow the contribution guidelines there
+3. Submit pull requests to the helpers4 repository
+
+For critical security updates or compatibility issues with the legacy biome feature, feel free to open an issue here.
 
 ## License
 
